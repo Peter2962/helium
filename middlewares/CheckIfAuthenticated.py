@@ -1,9 +1,13 @@
-from flask_http_middleware import MiddlewareManager, BaseHttpMiddleware
+from flask import jsonify
+from flask_http_middleware import BaseHTTPMiddleware
 
-class CheckIfAuthenticated(BaseHttpMiddleware):
+class CheckIfAuthenticated(BaseHTTPMiddleware):
 	def __init__(self):
 		super().__init__()
 
 	def dispatch(self, request, call_next):
-		print("Dispatching middleware: CheckIfAuthenticated")
-		return call_next(request)
+		isAuthenticated = False
+		if isAuthenticated == True:
+			return call_next(request)
+		else:
+			return jsonify({'message': 'authentication failed'})

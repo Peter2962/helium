@@ -1,0 +1,3 @@
+middlewares = [
+	'CheckIfAuthenticated'
+]

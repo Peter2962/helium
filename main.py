@@ -1,21 +1,26 @@
 import os
 from flask import Flask
 from database import db
+from routes import loadRoutes
+from flask_restful import Api
 from dotenv import load_dotenv
-from flask_restful import Resource, Api
 from flask_sqlalchemy import SQLAlchemy
+from flask_http_middleware import MiddlewareManager
 
 load_dotenv()
 
-## Resources ##
-from resources.Base import Base
-from resources.auth.Login import Login
-from resources.auth.Register import Register
-## End Resources ##
+## Middlewares
+from middlewares.CheckIfAuthenticated import CheckIfAuthenticated
+## End Middlewares
 
 app = Flask(__name__)
 api = Api(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://' + os.getenv('MYSQL_USERNAME') + ':' + os.getenv('MYSQL_PASSWORD') + '@' + os.getenv('MYSQL_HOST') + '/' + os.getenv('MYSQL_DATABASE')
+app.wsgi_app = MiddlewareManager(app)
+app.wsgi_app.add_middleware(CheckIfAuthenticated)
+
+# -- routes --
+load_routes(app)
 
 def main():
 	db.init_app(app)
@@ -28,11 +33,6 @@ def main():
 		db.create_all()
 
 	app.run(debug=True)
-
-
-api.add_resource(Base, '/')
-api.add_resource(Login, '/sign-in')
-api.add_resource(Register, '/sign-up')
 
 
 if __name__ == '__main__':
