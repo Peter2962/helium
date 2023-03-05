@@ -1,8 +1,8 @@
 import os
 from flask import Flask
 from database import db
-from routes import loadRoutes
 from flask_restful import Api
+from routes import load_routes
 from dotenv import load_dotenv
 from flask_sqlalchemy import SQLAlchemy
 from flask_http_middleware import MiddlewareManager

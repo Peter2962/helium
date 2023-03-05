@@ -10,4 +10,4 @@ class CheckIfAuthenticated(BaseHTTPMiddleware):
 		if isAuthenticated == True:
 			return call_next(request)
 		else:
-			return jsonify({'message': 'authentication failed'})
+			return jsonify({'message': request.path})
