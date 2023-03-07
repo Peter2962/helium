@@ -1,7 +1,7 @@
 import os
 import jwt
 import importlib
-from config import middlewares, routes_mapping
+from config import middlewares, routes_mapping, models
 
 def map_route(routeName, routeAction):
 	pass
@@ -39,3 +39,6 @@ def register_routes(app):
 			view_func=getattr(controllerClass, method)
 		)
 
+def register_models():
+	for model in models:
+		importlib.import_module('models' + '.' + model)

@@ -20,3 +20,8 @@ routes_mapping = {
 	'/sign-in': 'AuthController.signIn',
 	'/sign-up': 'AuthController.signUp'
 }
+
+# list of moderls to import
+models = [
+	'User'
+]

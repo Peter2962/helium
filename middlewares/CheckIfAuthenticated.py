@@ -10,6 +10,9 @@ class CheckIfAuthenticated(BaseHTTPMiddleware):
 		isAuthenticated = False
 		if request.path in public_routes:
 			return jsonify({'message': 'unauthenticated'})
+		elif request.path in ignored_routes:
+			return call_next(request)
+
 		if isAuthenticated == True:
 			return call_next(request)
 		else:

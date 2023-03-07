@@ -2,11 +2,10 @@ import os
 from flask import Flask
 from database import db
 from flask_restful import Api
-from routes import load_routes
 from dotenv import load_dotenv
 from flask_sqlalchemy import SQLAlchemy
 from flask_http_middleware import MiddlewareManager
-from functions import register_routes, register_middlewares
+from functions import register_routes, register_middlewares, register_models
 
 load_dotenv()
 
@@ -27,9 +26,9 @@ register_routes(app)
 
 def main():
 	db.init_app(app)
-	## Models ##
-	import models.User
-	## End Models ##
+
+	# -- models --
+	register_models()
 
 	with app.app_context():
 		db.drop_all()
