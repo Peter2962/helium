@@ -4,8 +4,8 @@ class AuthController():
 	def __init__(self):
 		pass
 
-	def login():
+	def signIn():
 		pass
 
-	def register():
+	def signUp():
 		pass

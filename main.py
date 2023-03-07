@@ -19,11 +19,11 @@ api = Api(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://' + os.getenv('MYSQL_USERNAME') + ':' + os.getenv('MYSQL_PASSWORD') + '@' + os.getenv('MYSQL_HOST') + '/' + os.getenv('MYSQL_DATABASE')
 app.wsgi_app = MiddlewareManager(app)
 
-# middlewares
+# -- middlewares --
 register_middlewares(app)
 
 # -- routes --
-load_routes(app)
+register_routes(app)
 
 def main():
 	db.init_app(app)
