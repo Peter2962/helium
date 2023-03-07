@@ -6,6 +6,7 @@ from routes import load_routes
 from dotenv import load_dotenv
 from flask_sqlalchemy import SQLAlchemy
 from flask_http_middleware import MiddlewareManager
+from functions import register_routes, register_middlewares
 
 load_dotenv()
 
@@ -17,7 +18,9 @@ app = Flask(__name__)
 api = Api(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://' + os.getenv('MYSQL_USERNAME') + ':' + os.getenv('MYSQL_PASSWORD') + '@' + os.getenv('MYSQL_HOST') + '/' + os.getenv('MYSQL_DATABASE')
 app.wsgi_app = MiddlewareManager(app)
-app.wsgi_app.add_middleware(CheckIfAuthenticated)
+
+# middlewares
+register_middlewares(app)
 
 # -- routes --
 load_routes(app)

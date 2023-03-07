@@ -3,7 +3,7 @@ middlewares = [
 ]
 
 # list of routes that do not require a valid token but will
-# a response if the jwt is not valid
+# return a response if the jwt is not valid
 public_routes = [
 	'/',
 ]
@@ -15,7 +15,7 @@ ignored_routes = [
 ]
 
 routes_mapping = {
-	"/": "BaseController.sendPing",
-	"sign-in": "AuthController.signIn",
+	'/': 'BaseController.sendPing',
+	'sign-in': 'AuthController.signIn',
 	'sign-up': 'AuthController.signUp'
 }
