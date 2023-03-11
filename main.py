@@ -9,10 +9,6 @@ from functions import register_routes, register_middlewares, register_models
 
 load_dotenv()
 
-## Middlewares
-from middlewares.CheckIfAuthenticated import CheckIfAuthenticated
-## End Middlewares
-
 app = Flask(__name__)
 api = Api(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://' + os.getenv('MYSQL_USERNAME') + ':' + os.getenv('MYSQL_PASSWORD') + '@' + os.getenv('MYSQL_HOST') + '/' + os.getenv('MYSQL_DATABASE')

@@ -5,7 +5,7 @@ class AuthController():
 		pass
 
 	def signIn():
-		pass
+		return jsonify({'res': 'signin'})
 
 	def signUp():
-		pass
+		return jsonify({'res': 'signup'})

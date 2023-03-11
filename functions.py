@@ -1,7 +1,8 @@
 import os
 import jwt
 import importlib
-from config import middlewares, routes_mapping, models
+from flask import request
+from config import middlewares, routes_mapping, models, jwt_identifier
 
 def map_route(routeName, routeAction):
 	pass
@@ -21,10 +22,12 @@ def jwt_decode(token):
 	return jwt.decode(token, os.getenv('APP_SECRET'), algorithms=[os.getenv('JWT_ALGO')])
 
 def register_routes(app):
-	for path in routes_mapping:
-		action = routes_mapping[path].split('.')
+	for route_object in routes_mapping:
+		path = route_object['path']
+		action = route_object['resource'].split('.')
 		controller = action[0]
 		method = action[1]
+		request_verb = route_object['method']
 
 		# import the controller dynamically
 		controllerClass = getattr(
@@ -36,9 +39,19 @@ def register_routes(app):
 
 		app.add_url_rule(
 			path,
+			methods=[request_verb],
 			view_func=getattr(controllerClass, method)
 		)
 
 def register_models():
 	for model in models:
 		importlib.import_module('models' + '.' + model)
+
+def auth_check():
+	is_authenticated = False
+	jwt_identifier_value = request.headers.get(jwt_identifier)
+	isValidJwt = False
+	if jwt_identifier_value:
+		decoded_payload = jwt_decode(jwt_identifier_value)
+
+	return False

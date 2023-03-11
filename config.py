@@ -1,5 +1,5 @@
 middlewares = [
-	'CheckIfAuthenticated'
+	'Auth'
 ]
 
 # list of routes that do not require a valid token but will
@@ -15,13 +15,41 @@ ignored_routes = [
 ]
 
 # routes mapping configuration
-routes_mapping = {
-	'/': 'BaseController.sendPing',
-	'/sign-in': 'AuthController.signIn',
-	'/sign-up': 'AuthController.signUp'
-}
+# routes_mapping = {
+# 	'/': {
+# 		'action': 'BaseController.sendPing',
+# 		'method': 'GET'
+# 	},
+# 	'/auth/sign-in': {
+# 		'action': 'AuthController.signIn'
+# 	},
+# 	'/auth/sign-up': {
+# 		'action': 'AuthController.signUp'
+# 	}
+# }
+
+routes_mapping = [
+	{
+		'path': '/',
+		'resource': 'BaseController.sendPing',
+		'method': 'GET'
+	},
+	{
+		'path': '/auth/sign-in',
+		'resource': 'AuthController.signIn',
+		'method': 'POST'
+	},
+	{
+		'path': '/auth/sign-up',
+		'resource': 'AuthController.signUp',
+		'method': 'POST'
+	}
+]
 
 # list of moderls to import
 models = [
 	'User'
 ]
+
+# name of the jwt field included in the header
+jwt_identifier = '_token'
