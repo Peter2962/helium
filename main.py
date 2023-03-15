@@ -5,7 +5,7 @@ from flask_restful import Api
 from dotenv import load_dotenv
 from flask_sqlalchemy import SQLAlchemy
 from flask_http_middleware import MiddlewareManager
-from functions import register_routes, register_middlewares, register_models
+from utils.common import register_routes, register_middlewares, register_models
 
 load_dotenv()
 
