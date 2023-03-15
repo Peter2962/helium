@@ -15,19 +15,6 @@ ignored_routes = [
 ]
 
 # routes mapping configuration
-# routes_mapping = {
-# 	'/': {
-# 		'action': 'BaseController.sendPing',
-# 		'method': 'GET'
-# 	},
-# 	'/auth/sign-in': {
-# 		'action': 'AuthController.signIn'
-# 	},
-# 	'/auth/sign-up': {
-# 		'action': 'AuthController.signUp'
-# 	}
-# }
-
 routes_mapping = [
 	{
 		'path': '/',
