@@ -30,7 +30,11 @@ def main():
 		db.drop_all()
 		db.create_all()
 
-	app.run(debug=True)
+	app.run(
+		host=os.getenv('APP_HOST'),
+		port=os.getenv('APP_PORT'),
+		debug=True
+	)
 
 
 if __name__ == '__main__':
