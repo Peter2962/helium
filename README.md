@@ -51,3 +51,8 @@ An example route:
 	'method': 'GET'
 }
 ```
+
+## Running the app
+```bash
+> python main.py
+```
