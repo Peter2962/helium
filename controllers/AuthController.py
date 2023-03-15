@@ -1,4 +1,4 @@
-from flask import jsonify
+from flask import jsonify, request
 
 class AuthController():
 	def __init__(self):
