@@ -1,4 +1,4 @@
-from functions import auth_check
+from utils.auth import auth_check
 from flask import jsonify, request
 from flask_http_middleware import BaseHTTPMiddleware
 from config import public_routes, ignored_routes, jwt_identifier
@@ -20,4 +20,4 @@ class Auth(BaseHTTPMiddleware):
 		if isAuthenticated == True:
 			return call_next(request)
 		else:
-			return jsonify({'message': request.path})
+			return jsonify({'message': 'unauthenticated'})

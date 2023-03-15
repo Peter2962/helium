@@ -5,7 +5,4 @@ class BaseController():
 		pass
 
 	def sendPing():
-		return jsonify({'r': 'ping'})
-
-	def test():
-		return jsonify({'action': 'test'})
+		return jsonify({'res': 'ping'})

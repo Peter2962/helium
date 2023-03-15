@@ -1,3 +1,5 @@
+from models.user import User
+
 middlewares = [
 	'Auth'
 ]
@@ -17,7 +19,7 @@ ignored_routes = [
 # routes mapping configuration
 routes_mapping = [
 	{
-		'path': '/',
+		'path': '/api',
 		'resource': 'BaseController.sendPing',
 		'method': 'GET'
 	},
@@ -33,10 +35,20 @@ routes_mapping = [
 	}
 ]
 
-# list of moderls to import
+# list of models to import
 models = [
-	'User'
+	'user'
 ]
 
-# name of the jwt field included in the header
+"""
+name of the jwt field included in the header
+"""
 jwt_identifier = '_token'
+
+"""
+auth configuration
+"""
+auth = {
+	'auth_model': User,
+	'payload_field_name': 'id'
+}
