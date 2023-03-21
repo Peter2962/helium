@@ -1,6 +1,7 @@
 import os
 from flask import Flask
 from database import db
+from flask_cors import CORS
 from flask_restful import Api
 from dotenv import load_dotenv
 from flask_sqlalchemy import SQLAlchemy
@@ -13,6 +14,7 @@ app = Flask(__name__)
 api = Api(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://' + os.getenv('MYSQL_USERNAME') + ':' + os.getenv('MYSQL_PASSWORD') + '@' + os.getenv('MYSQL_HOST') + '/' + os.getenv('MYSQL_DATABASE')
 app.wsgi_app = MiddlewareManager(app)
+CORS(app)
 
 # -- middlewares --
 register_middlewares(app)
