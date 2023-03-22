@@ -8,6 +8,9 @@ class Auth(BaseHTTPMiddleware):
 		super().__init__()
 
 	def dispatch(self, request, call_next):
+		if request.path in ignored_routes:
+			return call_next(request)
+			
 		if auth_check():
 			return call_next(request)
 		else:
